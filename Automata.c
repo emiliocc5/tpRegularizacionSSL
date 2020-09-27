@@ -38,21 +38,18 @@ enum STATE stateZeroTransitions(char c, char* palabra) {
     return state;
 }
 
-enum STATE trans_nodo_1(char c, char* palabra) {
+enum STATE stateOneTransitions(char c, char* palabra) {
     enum STATE state;
     char* aux;
 
-    if (char_belongs(c, lang_d, size_lang_d))
-        state = N_4;
+     if (charBelongsV2(c, languageC))
+        state = E4;
 
-    else if (char_belongs(c, lang_b, size_lang_b))
-        state = N_3;
-
-    else if (char_belongs(c, lang_a, size_lang_a))
-        state = N_2;
+    else if (charBelongsV2(c, languageA) || charBelongsV2(c, languageB) || charBelongsV2(c, languageD))
+        state = E2;
 
     else
-        state = N_0;
+        state = E1;
     
     return state;
 }
