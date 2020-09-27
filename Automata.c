@@ -23,73 +23,54 @@ char* str_concat(char*, char);
 void word_to_file(char);
 
 enum STATE stateZeroTransitions(char c, char* palabra) {
-    enum STATE state;
-    char* aux;
+    enum STATE state = E0;
 
     if (charBelongsV2(c, languageA))
         state = E1;
 
-    else if (charBelongsV2(c, languageB) || charBelongsV2(c, languageC) || charBelongsV2(c, languageD))
+    if (charBelongsV2(c, languageB))
         state = E2;
-
-    else
-        state = E0;
     
     return state;
 }
 
 enum STATE stateOneTransitions(char c, char* palabra) {
-    enum STATE state;
-    char* aux;
+    enum STATE state = E1;
 
-     if (charBelongsV2(c, languageC))
-        state = E4;
+    if (charBelongsV2(c, languageA))
+        state = E3;
 
-    else if (charBelongsV2(c, languageA) || charBelongsV2(c, languageB) || charBelongsV2(c, languageD))
+    if (charBelongsV2(c, languageB))
         state = E2;
 
-    else
-        state = E1;
+    if (charBelongsV2(c, languageC))
+        state = E4;
     
     return state;
 }
 
-enum STATE trans_nodo_2(char c, char* palabra) {
-    enum STATE state;
-    char* aux;
-
-    if (char_belongs(c, lang_d, size_lang_d))
-        state = N_4;
-
-    else if (char_belongs(c, lang_a, size_lang_a))
-        state = N_2;
-
-    else
-        state = N_0;
-    
+enum STATE stateTwoTransitions(char c, char* palabra) {
+    enum STATE state = E2;
     return state;
 }
 
-enum STATE trans_nodo_3(char c, char* palabra) {
-    enum STATE state;
-    char* aux;
-
-    if (char_belongs(c, lang_c, size_lang_c))
-        state = N_4;
-
-    else
-        state = N_0;
-    
-    return state;
-}
-
-enum STATE trans_nodo_4(char c, char* palabra) {
-    enum STATE state;
-    state = N_0;
+enum STATE stateThreeTransitions(char c, char* palabra) {
+    enum STATE state = E3;
+//El estado 3 tiene un bucle si llega una a, no lo contemplo en un condicional ya que no cambiaria de estado.
+    if (charBelongsV2(c, languageB))
+        state = E2;
 
     return state;
 }
 
+enum STATE stateFourTransitions(char c, char* palabra) {
+    enum STATE state = E4;
+
+     if (charBelongsV2(c, languageD))
+        state = E2;
+
+    return state;
+}
 
 //TODO Verificar si esto funciona
 bool charBelongsV2(char c, char language[]) {
