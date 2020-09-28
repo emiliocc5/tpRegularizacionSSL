@@ -11,10 +11,10 @@
 #define clrscr() printf("\e[1;1H\e[2J")
 #endif
 
-//TODO Ver en donde se esta usando el parametro palabra que se pasa a la funcion de transicion
-//TODO hacer funcionar el charBelongs sin pasarle la longitud del lenguajes
-//TODO, Descartar los que no pertenecen al lenguaje, ya que se meten como basura cuando seguido hay uno que si pertenece.
+//TODO Sacar logica de enviar la palabra del charBelongs
 //TODO, Ver como hacer para descartar llevar todo a un archivo y despues traerlo e imprimirlo
+//TODO Ver en donde se esta usando el parametro palabra que se pasa a la funcion de transicion
+//TODO, Descartar los que no pertenecen al lenguaje, ya que se meten como basura cuando seguido hay uno que si pertenece.
 
 int count = 1;
 void print_word();
