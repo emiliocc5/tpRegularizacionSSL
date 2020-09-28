@@ -12,14 +12,6 @@ static char languageC[] = {'.'};
 static int languageCSize = sizeof languageC / sizeof *languageC;
 static char languageD[] = {'0', '1'};
 static int languageDSize = sizeof languageD / sizeof *languageD;
-/* 
-static char lang_a[] = {'0', '1'};
-static int size_lang_a = 2;
-static char lang_b[] = {'.'};
-static int size_lang_b = 1;
-static int size_lang_c = 10;
-static char lang_d[] = {'B'};
-static int size_lang_d = 1; */
 
 bool charBelongs(char, char*, int);
 char* str_concat(char*, char);

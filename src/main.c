@@ -28,10 +28,9 @@ int main(){
     char* userInput;
     char* palabra = "";
 
-    userInput = malloc(15 * sizeof(char));
+    userInput = malloc(15 /** sizeof(char)*/);
 
     while (true) {
-        //clrscr();
         count = 1;
         printf("ER dada: [0-9]*F|[0-9]\\.[01]?\n");
         printf("Ingrese la cadena a analizar (Centinela: %%): ");
@@ -43,7 +42,7 @@ int main(){
             printf("Current character: %c\n", currentCharacter);
             if (currentCharacter == SENTINEL) {
                 if ((state == E2) || (state == E4)) {
-                    print_word();
+                    print_word(); //Aca se deberia imprimir la palabra, no buscar en un archivo.
                     state = E0;
                 }
                 exit = false;
