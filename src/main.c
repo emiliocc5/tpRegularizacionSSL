@@ -28,7 +28,7 @@ int main(){
     char* userInput;
     char* palabra = "";
 
-    userInput = malloc(5 * sizeof(char));
+    userInput = malloc(15 * sizeof(char));
 
     while (true) {
         //clrscr();
@@ -38,15 +38,14 @@ int main(){
         scanf("%s", userInput);
         printf("\n\n==> Las palabras del lenguaje a reconocer en la secuencia de texto ingresada son\n\n");
 
-        for (int i = 0; i < (strlen(userInput)); i++){
+        for (int i = 0; i < (strlen(userInput)); i++) {
             currentCharacter = userInput[i];
-
+            printf("Current character: %c\n", currentCharacter);
             if (currentCharacter == SENTINEL) {
                 if ((state == E2) || (state == E4)) {
                     print_word();
                     state = E0;
                 }
-
                 exit = false;
                 elimina_archivo();
             }

@@ -24,53 +24,71 @@ void word_to_file(char);
 
 enum STATE stateZeroTransitions(char c, char* palabra) {
     enum STATE state = E0;
-
-    if (char_belongs(c, languageA, 10))
+    printf("State 0\n");
+    if (char_belongs(c, languageA, 10)) {
+        printf("transition to E1\n");
         state = E1;
+    }
 
-    else if (char_belongs(c, languageB, 1))
+    else if (char_belongs(c, languageB, 1)) {
+        printf("transition to E2\n");
         state = E2;
+    }
     
     return state;
 }
 
 enum STATE stateOneTransitions(char c, char* palabra) {
     enum STATE state = E0;
-
-    if (char_belongs(c, languageA, 10))
+    printf("State 1\n");
+    if (char_belongs(c, languageA, 10)){
+        printf("transition to E3\n");
         state = E3;
+    }
 
-    if (char_belongs(c, languageB, 1))
+    if (char_belongs(c, languageB, 1)){
+        printf("transition to E2\n");
         state = E2;
+    }
 
-    if (char_belongs(c, languageC, 1))
+    if (char_belongs(c, languageC, 1)){
+        printf("transition to E4\n");
         state = E4;
+    }
     
     return state;
 }
 
 enum STATE stateTwoTransitions(char c, char* palabra) {
+    printf("State 2\n");
     enum STATE state = E0;
+    printf("final state, transition to 0\n");
     return state;
 }
 
 enum STATE stateThreeTransitions(char c, char* palabra) {
     enum STATE state = E0;
-
-    if (char_belongs(c, languageA, 10))
+    printf("State 3\n");
+    if (char_belongs(c, languageA, 10)){
+        printf("transition to E3\n");
         state = E3;
+    }
 
-    if (char_belongs(c, languageB, 1))
+    if (char_belongs(c, languageB, 1)){
+        printf("transition to E2\n");
         state = E2;
+    }
 
     return state;
 }
 
 enum STATE stateFourTransitions(char c, char* palabra) {
     enum STATE state = E0;
-
-     if (char_belongs(c, languageD, 2))
+    printf("State 4\n");
+     if (char_belongs(c, languageD, 2)){
+        printf("transition to E2");
         state = E2;
+    }
 
     return state;
 }
@@ -87,10 +105,7 @@ bool charBelongsV2(char c, char language[]) {
     return false;
 }
 
-
-
 bool char_belongs(char c, char *lang_x, int size_lang_x) {
-    
     for (int i=0; i<size_lang_x; i++){
         if (c == lang_x[i]){
             word_to_file(c);
