@@ -96,6 +96,7 @@ enum STATE stateFourTransitions(char c, char* palabra) {
 //TODO Verificar si esto funciona
 bool charBelongsV2(char c, char language[]) {
     int languageLength = strlen(language);
+    printf("Longitud del array: %d", languageLength);
     for (int i = 0; i < languageLength; i++){
         if (c == language[i]){
             word_to_file(c);
