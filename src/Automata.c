@@ -87,6 +87,8 @@ bool charBelongsV2(char c, char language[]) {
     return false;
 }
 
+
+
 bool char_belongs(char c, char *lang_x, int size_lang_x) {
     
     for (int i=0; i<size_lang_x; i++){
