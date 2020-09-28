@@ -18,55 +18,58 @@ static char lang_d[] = {'B'};
 static int size_lang_d = 1; */
 
 bool charBelongsV2(char, char*);
-//bool char_belongs(char, char*, int);
+bool char_belongs(char, char*, int);
 char* str_concat(char*, char);
 void word_to_file(char);
 
 enum STATE stateZeroTransitions(char c, char* palabra) {
     enum STATE state = E0;
 
-    if (charBelongsV2(c, languageA))
+    if (char_belongs(c, languageA, 10))
         state = E1;
 
-    if (charBelongsV2(c, languageB))
+    else if (char_belongs(c, languageB, 1))
         state = E2;
     
     return state;
 }
 
 enum STATE stateOneTransitions(char c, char* palabra) {
-    enum STATE state = E1;
+    enum STATE state = E0;
 
-    if (charBelongsV2(c, languageA))
+    if (char_belongs(c, languageA, 10))
         state = E3;
 
-    if (charBelongsV2(c, languageB))
+    if (char_belongs(c, languageB, 1))
         state = E2;
 
-    if (charBelongsV2(c, languageC))
+    if (char_belongs(c, languageC, 1))
         state = E4;
     
     return state;
 }
 
 enum STATE stateTwoTransitions(char c, char* palabra) {
-    enum STATE state = E2;
+    enum STATE state = E0;
     return state;
 }
 
 enum STATE stateThreeTransitions(char c, char* palabra) {
-    enum STATE state = E3;
-//El estado 3 tiene un bucle si llega una a, no lo contemplo en un condicional ya que no cambiaria de estado.
-    if (charBelongsV2(c, languageB))
+    enum STATE state = E0;
+
+    if (char_belongs(c, languageA, 10))
+        state = E3;
+
+    if (char_belongs(c, languageB, 1))
         state = E2;
 
     return state;
 }
 
 enum STATE stateFourTransitions(char c, char* palabra) {
-    enum STATE state = E4;
+    enum STATE state = E0;
 
-     if (charBelongsV2(c, languageD))
+     if (char_belongs(c, languageD, 2))
         state = E2;
 
     return state;
@@ -84,7 +87,7 @@ bool charBelongsV2(char c, char language[]) {
     return false;
 }
 
-/* bool char_belongs(char c, char *lang_x, int size_lang_x) {
+bool char_belongs(char c, char *lang_x, int size_lang_x) {
     
     for (int i=0; i<size_lang_x; i++){
         if (c == lang_x[i]){
@@ -94,7 +97,7 @@ bool charBelongsV2(char c, char language[]) {
     }
     return false;
 }
- */
+ 
 void word_to_file(char c) {
     FILE *fptr;
     fptr = fopen("words_found.txt", "a");
