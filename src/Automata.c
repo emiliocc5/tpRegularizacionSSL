@@ -68,7 +68,6 @@ enum STATE stateThreeTransitions(char c, char **palabra) {
         *palabra = intermediate(*palabra, c);
         state = E2;
     }
-
     return state;
 }
 

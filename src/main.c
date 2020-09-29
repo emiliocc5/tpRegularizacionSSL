@@ -15,6 +15,7 @@
 //TODO, armar una especie de "Sistema anti fallos", en el cual, si el ultimo caracter de la cadena no es un %, se le concatena uno
 
 int count = 1;
+bool flagToOut = false;
 
 int main(){
     enum STATE state = E0;
@@ -26,7 +27,7 @@ int main(){
 
     userInput = malloc(15 * sizeof(char));
 
-    while (true) {
+    while (!flagToOut) {
         count = 1;
         printf("ER dada: [0-9]*F|[0-9]\\.[01]?\n");
         printf("Ingrese la cadena a analizar (Centinela: %%): ");
@@ -42,6 +43,7 @@ int main(){
                     palabra = "";
                     state = E0;
                 }
+                palabra = "";
                 exit = false;
             }
             else {
@@ -68,9 +70,10 @@ int main(){
                 }
             }
         }
-        printf("\n Desea evaluar otra cadena? [Y/N]:  ");
+        printf("------------------------------------------------ \n");
+        printf("\n Presione N para salir, cualquier otra tecla para evaluar una cadena:  ");
         if ((getchar() == 'N') || (getchar() == 'n'))
-            break;
+            flagToOut = true;
     }
     free(userInput);
     return 0;
