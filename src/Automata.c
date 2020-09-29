@@ -21,7 +21,6 @@ void word_to_file(char);
 
 enum STATE stateZeroTransitions(char c, char **palabra) {
     enum STATE state = E0;
-    printf("State 0\n");
     if (charBelongs(c, languageA, languageASize)) {
         printf("transition to E1\n");
         *palabra = intermediario(*palabra, c);
@@ -64,14 +63,14 @@ enum STATE stateOneTransitions(char c, char **palabra) {
     return state;
 }
 
-enum STATE stateTwoTransitions(char c, char* palabra) {
+enum STATE stateTwoTransitions(char c, char **palabra) {
     printf("State 2\n");
     enum STATE state = E0;
     printf("final state, transition to 0\n");
     return state;
 }
 
-enum STATE stateThreeTransitions(char c, char* palabra) {
+enum STATE stateThreeTransitions(char c, char **palabra) {
     enum STATE state = E0;
     printf("State 3\n");
     if (charBelongs(c, languageA, languageASize)){
@@ -87,7 +86,7 @@ enum STATE stateThreeTransitions(char c, char* palabra) {
     return state;
 }
 
-enum STATE stateFourTransitions(char c, char* palabra) {
+enum STATE stateFourTransitions(char c, char **palabra) {
     enum STATE state = E0;
     printf("State 4\n");
      if (charBelongs(c, languageD, languageDSize)){
@@ -101,7 +100,7 @@ enum STATE stateFourTransitions(char c, char* palabra) {
 bool charBelongs(char c, char *languageToBelong, int languageToBelongSize) {
     for (int i=0; i < languageToBelongSize; i++){
         if (c == languageToBelong[i]){
-            word_to_file(c); //TODO Sacar esto
+            //word_to_file(c); //TODO Sacar esto
             return true;
         }
     }
