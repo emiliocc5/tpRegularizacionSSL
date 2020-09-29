@@ -45,33 +45,29 @@ int main(){
                 exit = false;
             }
             else {
-                if (exit == false) {  //TODO, Ver si se puede meter un switch acá
-                    if (state == E0){
+                if (exit == false) { 
+                    switch (state) {
+                    case E0:
                         state = stateZeroTransitions(currentCharacter, &palabra);
-                    }
-
-                    else if (state == E1){
+                        break;
+                    case E1:
                         state = stateOneTransitions(currentCharacter, &palabra);
-                    }
-
-                    else if (state == E2){
+                        break;
+                    case E2:
                         state = stateTwoTransitions(currentCharacter, &palabra);
-                    }
-
-                    else if (state == E3){
+                        break;
+                    case E3:
                         state = stateThreeTransitions(currentCharacter, &palabra);
-                    }
-                    
-                    else if (state==E4){
+                        break;
+                    case E4:
                         state = stateFourTransitions(currentCharacter, &palabra);
+                        break;
                     }
-                
                     if (state == E0)
                         exit = true;
                 }
             }
         }
-
         printf("\n Desea evaluar otra cadena? [Y/N]:  ");
         if ((getchar() == 'N') || (getchar() == 'n'))
             break;
