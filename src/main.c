@@ -6,6 +6,7 @@
 
 #ifdef _WIN32
 #include <conio.h>
+#include <windows.h>
 #else
 #include <stdio.h>
 #define clrscr() printf("\e[1;1H\e[2J")
@@ -26,9 +27,9 @@ int main(){
 
     char currentCharacter;
     char* userInput;
-    static char *palabra = "Hola, ";
+    char *palabra = "";
 
-    userInput = malloc(15 /** sizeof(char)*/);
+    userInput = malloc(15 * sizeof(char));
 
     while (true) {
         count = 1;
@@ -44,6 +45,7 @@ int main(){
                 if ((state == E2) || (state == E4)) {
                     print_word(); //Aca se deberia imprimir la palabra, no buscar en un archivo.
                     printf("Palabra: %s \n", palabra);
+                    palabra = "";
                     state = E0;
                 }
                 exit = false;
@@ -56,7 +58,7 @@ int main(){
                     }
 
                     else if (state == E1){
-                        state = stateOneTransitions(currentCharacter, palabra);
+                        state = stateOneTransitions(currentCharacter, &palabra);
                     }
 
                     else if (state == E2){

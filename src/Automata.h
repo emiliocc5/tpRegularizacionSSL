@@ -9,7 +9,7 @@ enum STATE {E0, E1, E2, E3, E4};
 
 // Funciones Utilizadas por automata
 enum STATE stateZeroTransitions(char, char**);
-enum STATE stateOneTransitions(char, char*);
+enum STATE stateOneTransitions(char, char**);
 enum STATE stateTwoTransitions(char, char*);
 enum STATE stateThreeTransitions(char, char*);
 enum STATE stateFourTransitions(char, char*);
