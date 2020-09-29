@@ -12,8 +12,6 @@
 #define clrscr() printf("\e[1;1H\e[2J")
 #endif
 
-//TODO, Ver como hacer para descartar llevar todo a un archivo y despues traerlo e imprimirlo
-//TODO, Descartar los que no pertenecen al lenguaje, ya que se meten como basura cuando seguido hay uno que si pertenece.
 //TODO, armar una especie de "Sistema anti fallos", en el cual, si el ultimo caracter de la cadena no es un %, se le concatena uno
 
 int count = 1;
@@ -39,18 +37,14 @@ int main(){
 
         for (int i = 0; i < (strlen(userInput)); i++) {
             currentCharacter = userInput[i];
-            printf("Current character: %c\n", currentCharacter);
             if (currentCharacter == SENTINEL) {
                 if ((state == E2) || (state == E4)) {
-                    //print_word(); //Aca se deberia imprimir la palabra, no buscar en un archivo.
-                    printf("\t%d) ", count);
-                    printf("Palabra: %s \n", palabra);
+                    printf("\t%d) %s \n ", count, palabra);
                     count++;
                     palabra = "";
                     state = E0;
                 }
                 exit = false;
-                //elimina_archivo();
             }
             else {
                 if (exit == false) {  //TODO, Ver si se puede meter un switch acá

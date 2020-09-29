@@ -14,7 +14,7 @@ static char languageD[] = {'0', '1'};
 static int languageDSize = sizeof languageD / sizeof *languageD;
 
 bool charBelongs(char, char*, int);
-char* intermediario(char*, const char);
+char* intermediate(char*, const char);
 char* concatCharToWord(char*, const char, char*, size_t);
 void word_to_file(char);
 
@@ -22,41 +22,31 @@ void word_to_file(char);
 enum STATE stateZeroTransitions(char c, char **palabra) {
     enum STATE state = E0;
     if (charBelongs(c, languageA, languageASize)) {
-        printf("transition to E1\n");
-        *palabra = intermediario(*palabra, c);
+        *palabra = intermediate(*palabra, c);
         state = E1;
     }
 
     if (charBelongs(c, languageB, languageBSize)) {
-        printf("transition to E2\n");
-        *palabra = intermediario(*palabra, c);
+        *palabra = intermediate(*palabra, c);
         state = E2;
     }
-    /*size_t len = strlen(*palabra);
-    char *str2 = malloc(len + 1 + 1 );
-    *palabra = concatCharToWord(*palabra, c, str2, len);
-    *palabra = intermediario(*palabra, c);*/
     return state;
 }
 
 enum STATE stateOneTransitions(char c, char **palabra) {
     enum STATE state = E0;
-    printf("State 1\n");
     if (charBelongs(c, languageA, languageASize)){
-        printf("transition to E3\n");
-        *palabra = intermediario(*palabra, c);
+        *palabra = intermediate(*palabra, c);
         state = E3;
     }
 
     if (charBelongs(c, languageB, languageBSize)){
-        printf("transition to E2\n");
-        *palabra = intermediario(*palabra, c);
+        *palabra = intermediate(*palabra, c);
         state = E2;
     }
 
     if (charBelongs(c, languageC, languageCSize)){
-        printf("transition to E4\n");
-        *palabra = intermediario(*palabra, c);
+        *palabra = intermediate(*palabra, c);
         state = E4;
     }
     
@@ -64,22 +54,20 @@ enum STATE stateOneTransitions(char c, char **palabra) {
 }
 
 enum STATE stateTwoTransitions(char c, char **palabra) {
-    printf("State 2\n");
     enum STATE state = E0;
-    printf("final state, transition to 0\n");
+    *palabra = intermediate(*palabra, c);
     return state;
 }
 
 enum STATE stateThreeTransitions(char c, char **palabra) {
     enum STATE state = E0;
-    printf("State 3\n");
     if (charBelongs(c, languageA, languageASize)){
-        printf("transition to E3\n");
+        *palabra = intermediate(*palabra, c);
         state = E3;
     }
 
     if (charBelongs(c, languageB, languageBSize)){
-        printf("transition to E2\n");
+        *palabra = intermediate(*palabra, c);
         state = E2;
     }
 
@@ -88,9 +76,8 @@ enum STATE stateThreeTransitions(char c, char **palabra) {
 
 enum STATE stateFourTransitions(char c, char **palabra) {
     enum STATE state = E0;
-    printf("State 4\n");
      if (charBelongs(c, languageD, languageDSize)){
-        printf("transition to E2");
+        *palabra = intermediate(*palabra, c);
         state = E2;
     }
 
@@ -100,7 +87,6 @@ enum STATE stateFourTransitions(char c, char **palabra) {
 bool charBelongs(char c, char *languageToBelong, int languageToBelongSize) {
     for (int i=0; i < languageToBelongSize; i++){
         if (c == languageToBelong[i]){
-            //word_to_file(c); //TODO Sacar esto
             return true;
         }
     }
@@ -115,20 +101,13 @@ void word_to_file(char c) {
     fclose(fptr);
 }
 
-char* intermediario(char* cadena1, const char caracterAConcatenar) {
+char* intermediate(char* cadena1, const char caracterAConcatenar) {
     size_t len = strlen(cadena1);
     char *str2 = malloc(len + 1 + 1 );
     return concatCharToWord(cadena1, caracterAConcatenar, str2, len);
 }
 
 char* concatCharToWord(char* cadena1, const char caracterAConcatenar, char *strFinal, size_t len) {
-    /*strcat(s3, cadena1);
-    strcat(s3, cadena2);
-    printf("Concat success \n");
-    _sleep(10000);
-    printf("Aca llega, cadena1: %s", s3);
-    //_sleep(10000);
-    return (s3);*/
     strcpy(strFinal, cadena1);
     strFinal[len] = caracterAConcatenar;
     strFinal[len + 1] = '\0';
