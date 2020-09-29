@@ -111,3 +111,14 @@ void word_to_file(char c) {
     fprintf(fptr, "%c", c);
     fclose(fptr);
 }
+
+char* concatenarCadena (char* cadena1, const char* cadena2)
+{
+    int i = sizeof cadena1 / sizeof *cadena1;
+    int j;
+    for (j = 0; cadena2[j] != '\0'; j++, i++) {
+        cadena1[i] = cadena2[j];
+    } 
+    cadena1[i] = '\0';
+    return (cadena1);
+}
