@@ -16,8 +16,6 @@ static int languageDSize = sizeof languageD / sizeof *languageD;
 bool charBelongs(char, char*, int);
 char* intermediate(char*, const char);
 char* concatCharToWord(char*, const char, char*, size_t);
-void word_to_file(char);
-
 
 enum STATE stateZeroTransitions(char c, char **palabra) {
     enum STATE state = E0;
@@ -91,14 +89,6 @@ bool charBelongs(char c, char *languageToBelong, int languageToBelongSize) {
         }
     }
     return false;
-}
- 
-void word_to_file(char c) {
-    FILE *fptr;
-    fptr = fopen("words_found.txt", "a");
-
-    fprintf(fptr, "%c", c);
-    fclose(fptr);
 }
 
 char* intermediate(char* cadena1, const char caracterAConcatenar) {

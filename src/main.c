@@ -15,8 +15,6 @@
 //TODO, armar una especie de "Sistema anti fallos", en el cual, si el ultimo caracter de la cadena no es un %, se le concatena uno
 
 int count = 1;
-void print_word();
-void elimina_archivo();
 
 int main(){
     enum STATE state = E0;
@@ -33,7 +31,7 @@ int main(){
         printf("ER dada: [0-9]*F|[0-9]\\.[01]?\n");
         printf("Ingrese la cadena a analizar (Centinela: %%): ");
         scanf("%s", userInput);
-        printf("\n\nLas palabras del lenguaje a reconocer en la secuencia de texto ingresada son: \n\n");
+        printf("\n\nLas palabras a reconocer en la secuencia de texto ingresada son: \n\n");
 
         for (int i = 0; i < (strlen(userInput)); i++) {
             currentCharacter = userInput[i];
@@ -78,36 +76,7 @@ int main(){
         if ((getchar() == 'N') || (getchar() == 'n'))
             break;
     }
-
-    //elimina_archivo();
     free(userInput);
     return 0;
 }
 
-void print_word() {
-    char c;
-    FILE *fptr;
-
-    fptr = fopen("words_found.txt", "r");
-    c = fgetc(fptr);
-    
-    printf("\t%d) ", count);
-    while (c != EOF){
-        printf("%c", c);
-        c = fgetc(fptr);
-    }
-
-    fclose(fptr);
-    remove("words_found.txt");
-    printf("\n");
-    count++;
-}
-
-void elimina_archivo(){
-    FILE *fptr;
-    fptr = fopen("words_found.txt", "r");
-    if (fptr != NULL)
-        remove("words_found.txt");
-    
-    fclose(fptr);
-}
