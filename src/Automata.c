@@ -14,23 +14,29 @@ static char languageD[] = {'0', '1'};
 static int languageDSize = sizeof languageD / sizeof *languageD;
 
 bool charBelongs(char, char*, int);
-char* str_concat(char*, char);
+char* concatCharToWord(char*, char);
 void word_to_file(char);
 
-enum STATE stateZeroTransitions(char c, char* palabra) {
+enum STATE stateZeroTransitions(char c, char **palabra) {
     enum STATE state = E0;
     printf("State 0\n");
     if (charBelongs(c, languageA, languageASize)) {
         printf("transition to E1\n");
+        //concatCharToWord(*palabra, c);
         state = E1;
     }
 
     if (charBelongs(c, languageB, languageBSize)) {
         printf("transition to E2\n");
+        //concatCharToWord(*palabra, c);
         state = E2;
     }
-    
-    return state;
+    /* char *auxPalabra;
+    auxPalabra = *palabra;
+    printf("Palabra: %s \n", auxPalabra);
+    *palabra = "emilio";
+    strcat(auxPalabra, *palabra);
+     */return state;
 }
 
 enum STATE stateOneTransitions(char c, char* palabra) {
@@ -88,10 +94,10 @@ enum STATE stateFourTransitions(char c, char* palabra) {
     return state;
 }
 
-bool charBelongs(char c, char *lang_x, int size_lang_x) {
-    for (int i=0; i<size_lang_x; i++){
-        if (c == lang_x[i]){
-            word_to_file(c);
+bool charBelongs(char c, char *languageToBelong, int languageToBelongSize) {
+    for (int i=0; i < languageToBelongSize; i++){
+        if (c == languageToBelong[i]){
+            word_to_file(c); //TODO Sacar esto
             return true;
         }
     }

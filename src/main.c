@@ -13,8 +13,8 @@
 
 //TODO Sacar logica de enviar la palabra del charBelongs
 //TODO, Ver como hacer para descartar llevar todo a un archivo y despues traerlo e imprimirlo
-//TODO Ver en donde se esta usando el parametro palabra que se pasa a la funcion de transicion
 //TODO, Descartar los que no pertenecen al lenguaje, ya que se meten como basura cuando seguido hay uno que si pertenece.
+//TODO, armar una especie de "Sistema anti fallos", en el cual, si el ultimo caracter de la cadena no es un %, se le concatena uno
 
 int count = 1;
 void print_word();
@@ -26,7 +26,7 @@ int main(){
 
     char currentCharacter;
     char* userInput;
-    char* palabra = "";
+    static char *palabra = "Hola, ";
 
     userInput = malloc(15 /** sizeof(char)*/);
 
@@ -43,15 +43,16 @@ int main(){
             if (currentCharacter == SENTINEL) {
                 if ((state == E2) || (state == E4)) {
                     print_word(); //Aca se deberia imprimir la palabra, no buscar en un archivo.
+                    printf("Palabra: %s \n", palabra);
                     state = E0;
                 }
                 exit = false;
                 elimina_archivo();
             }
             else {
-                if (exit == false) {
+                if (exit == false) {  //TODO, Ver si se puede meter un switch acá
                     if (state == E0){
-                        state = stateZeroTransitions(currentCharacter, palabra);
+                        state = stateZeroTransitions(currentCharacter, &palabra);
                     }
 
                     else if (state == E1){
@@ -76,7 +77,7 @@ int main(){
             }
         }
 
-        printf("\n==> Desea evaluar otra cadena? [Y/N] => ");
+        printf("\n Desea evaluar otra cadena? [Y/N]:  ");
         if ((getchar() == 'N') || (getchar() == 'n'))
             break;
     }
