@@ -12,8 +12,6 @@
 #define clrscr() printf("\e[1;1H\e[2J")
 #endif
 
-//TODO, armar una especie de "Sistema anti fallos", en el cual, si el ultimo caracter de la cadena no es un %, se le concatena uno
-
 int count = 1;
 bool flagToOut = false;
 
