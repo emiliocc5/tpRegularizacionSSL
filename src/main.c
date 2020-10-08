@@ -1,4 +1,4 @@
-#include "automata.h"
+#include "Automata.h"
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
@@ -43,6 +43,7 @@ int main(){
                 }
                 palabra = "";
                 exit = false;
+                state = E0;
             }
             else {
                 if (exit == false) { 
